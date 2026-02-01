@@ -85,4 +85,17 @@ public class ChallengeTests extends BaseTest {
         assertTrue(test4Buttons.get(0).isEnabled(), "First button should be enabled");
         assertFalse(test4Buttons.get(1).isEnabled(), "Second button should be disabled");
     }
+
+    @Test
+    void test5_delayedBtn() {
+        WebElement test5Btn = homePage.test5DelayedBtn();
+        assertTrue(test5Btn.isDisplayed(), "Test 5 button should be visible");
+
+        test5Btn.click();
+
+        WebElement test5Success = homePage.test5SuccessAlert();
+        assertTrue(test5Success.isDisplayed(), "Test 5 button should be visible");
+        assertFalse(test5Btn.isEnabled(),  "Test 5 button should be disabled");
+
+    }
 }

@@ -83,4 +83,13 @@ public class HomePage {
     public WebElement test3DropdownMenu() {
         return getTestDiv(3).findElement(By.className("dropdown-menu"));
     }
+
+    // Test 5 Getters
+    public WebElement test5DelayedBtn() {
+        return waits.visible(By.cssSelector("button[id='test5-button']"));
+    }
+
+    public WebElement test5SuccessAlert() {
+        return waits.visible(By.cssSelector("div[id='test5-alert']"));
+    }
 }
