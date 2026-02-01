@@ -94,7 +94,7 @@ public class ChallengeTests extends BaseTest {
         test5Btn.click();
 
         WebElement test5Success = homePage.test5SuccessAlert();
-        assertTrue(test5Success.isDisplayed(), "Test 5 button should be visible");
+        assertTrue(test5Success.isDisplayed(), "Test 5 success alert should be visible");
         assertFalse(test5Btn.isEnabled(),  "Test 5 button should be disabled");
 
     }

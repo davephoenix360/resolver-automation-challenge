@@ -17,14 +17,11 @@ public class HomePage {
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
-        this.waits = new Waits(driver, Duration.ofSeconds(10));
+        this.waits = new Waits(driver, Duration.ofSeconds(15));
     }
 
     public void open() {
         driver.get(DEFAULT_URL);
-
-        // Navigate to Home tab to ensure starting point
-        waits.visible(By.xpath("//*[@id=\"navbarColor01\"]/ul/li[1]/a")).click();
     }
 
     public WebElement getTestDiv(int testNumber) {
@@ -60,7 +57,9 @@ public class HomePage {
     }
 
     public void test1EnterLoginDetails(String email, String password) {
+        test1Email().clear();
         test1Email().sendKeys(email);
+        test1Password().clear();
         test1Password().sendKeys(password);
     }
 
@@ -88,7 +87,8 @@ public class HomePage {
 
     // Test 5 Getters
     public WebElement test5DelayedBtn() {
-        return waits.visible(By.cssSelector("button[id='test5-button']"));
+        waits.visible(By.cssSelector("button[id='test5-button']"));
+        return waits.clickable(By.cssSelector("button[id='test5-button']"));
     }
 
     public WebElement test5SuccessAlert() {

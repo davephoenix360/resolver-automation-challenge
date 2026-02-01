@@ -32,10 +32,16 @@ This repo contains:
             ├─ pages/     # Page Object(s) for selectors/actions
             └─ support/   # Driver + wait helpers
 
-````
+```
 
 Design choices:
--
+- **Scoped selectors per test container:** All element lookups start from `#test-<n>-div` via `getTestDiv(n)` to keep selectors stable and avoid accidental matches elsewhere on the page.
+- **Explicit waits over sleeps:** Used a small `Waits` helper (visibility/clickable) to reduce flakiness, especially for Test 5 where the button appears after a random delay.
+- **Page Object separation:** Encapsulated locators + interactions in `HomePage` so tests focus on assertions/intent (readability + maintainability).
+- **Reliable “own text” extraction:** For Test 2, used a JS-based `ownText()` helper to assert list item text without including child badge text.
+- **Reusable grid accessor:** Implemented a `gridCellValue(row, col)` method (0-indexed) to retrieve any cell from the table for Test 6. 
+- **Test independence**: Each test opens the page fresh in `@BeforeEach` to avoid state bleed across tests. 
+- **Driver lifecycle management**: BaseTest owns driver setup/teardown to ensure clean isolation and prevent leaked browser processes.
 
 ---
 
@@ -50,7 +56,7 @@ Verify:
 java -version
 mvn -v
 python --version
-````
+```
 
 ---
 
