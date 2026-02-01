@@ -71,4 +71,16 @@ public class HomePage {
         return test2ListGroup().findElements(By.cssSelector("li.list-group-item"));
     }
 
+    // Test 3 Getters and ops
+    public WebElement test3DropdownDiv() {
+        return getTestDiv(3).findElement(By.className("dropdown"));
+    }
+
+    public WebElement test3DropdownBtn() {
+        return getTestDiv(3).findElement(By.id("dropdownMenuButton"));
+    }
+
+    public WebElement test3DropdownMenu() {
+        return getTestDiv(3).findElement(By.className("dropdown-menu"));
+    }
 }

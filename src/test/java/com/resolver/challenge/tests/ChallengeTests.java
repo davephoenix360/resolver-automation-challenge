@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -49,5 +50,28 @@ public class ChallengeTests extends BaseTest {
 
         WebElement secondListItemBadge = secondListItem.findElement(By.className("badge"));
         assertEquals("6", secondListItemBadge.getText(), "List Item 2 should be visible and correct");
+    }
+
+    @Test
+    void test3_dropdownValues() {
+        WebElement dropdownBtn = homePage.test3DropdownBtn();
+        assertTrue(dropdownBtn.isDisplayed(), "Dropdown button should be visible");
+
+        assertEquals("Option 1", dropdownBtn.getText(), "Dropdown value should be visible");
+
+        dropdownBtn.click();
+        WebElement dropdownMenu = homePage.test3DropdownMenu();
+
+        // Select the Option 3
+        Optional<WebElement> option3Opt = dropdownMenu.findElements(By.className("dropdown-item")).stream()
+                .filter(webElement -> webElement.getText().equals("Option 3")).findFirst();
+
+        assertTrue(option3Opt.isPresent(), "Dropdown menu should be visible");
+
+        WebElement option3 = option3Opt.get();
+        option3.click();
+
+        assertEquals("Option 3", dropdownBtn.getText(), "Dropdown value should be visible");
+
     }
 }
