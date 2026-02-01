@@ -22,7 +22,28 @@ public class HomePage {
         driver.get(DEFAULT_URL);
     }
 
-    public WebElement testDiv(String id) {
-        return waits.visible(By.id(id));
+    public WebElement getTestDiv(int testNumber) {
+        return waits.visible(By.id("test-" + testNumber + "-div"));
     }
+
+    // Test 1 Getters and ops
+
+    public WebElement test1Email() {
+        return getTestDiv(1).findElement(By.id("inputEmail"));
+    }
+
+    public WebElement test1Password() {
+        return getTestDiv(1).findElement(By.id("inputPassword"));
+    }
+
+    public WebElement test1SignIn() {
+        return getTestDiv(1).findElement(By.cssSelector("button[type='submit']"));
+    }
+
+    public void test1EnterLoginDetails(String email, String password) {
+        test1Email().sendKeys(email);
+        test1Password().sendKeys(password);
+    }
+
+
 }
