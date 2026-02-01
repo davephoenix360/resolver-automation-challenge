@@ -2,10 +2,12 @@ package com.resolver.challenge.pages;
 
 import com.resolver.challenge.support.Waits;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.time.Duration;
+import java.util.List;
 
 public class HomePage {
     private final WebDriver driver;
@@ -20,10 +22,25 @@ public class HomePage {
 
     public void open() {
         driver.get(DEFAULT_URL);
+        // TODO: Add a navigation to home page here since our tests have that as prefix
     }
 
     public WebElement getTestDiv(int testNumber) {
         return waits.visible(By.id("test-" + testNumber + "-div"));
+    }
+
+    // A helper because we need the text without the child text for Test2
+    public static String ownText(WebDriver driver, WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        return (String) js.executeScript(
+                "return Array.from(arguments[0].childNodes)" +
+                        ".filter(n => n.nodeType === Node.TEXT_NODE)" +
+                        ".map(n => n.textContent)" +
+                        ".join(' ')" +
+                        ".replace(/\\s+/g,' ')" +
+                        ".trim();",
+                element
+        );
     }
 
     // Test 1 Getters and ops
@@ -45,5 +62,13 @@ public class HomePage {
         test1Password().sendKeys(password);
     }
 
+    // Test 2 Getters and ops
+    public WebElement test2ListGroup() {
+        return getTestDiv(2).findElement(By.cssSelector("ul.list-group"));
+    }
+
+    public List<WebElement> test2ListGroupChildren() {
+        return test2ListGroup().findElements(By.cssSelector("li.list-group-item"));
+    }
 
 }
