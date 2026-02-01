@@ -11,6 +11,6 @@ public class SmokeTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
         homePage.open();
         assertNotNull(driver.getTitle());
-//        System.out.println(driver.getTitle());
+        System.out.println(driver.getTitle());
     }
 }

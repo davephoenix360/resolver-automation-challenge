@@ -22,7 +22,9 @@ public class HomePage {
 
     public void open() {
         driver.get(DEFAULT_URL);
-        // TODO: Add a navigation to home page here since our tests have that as prefix
+
+        // Navigate to Home tab to ensure starting point
+        waits.visible(By.xpath("//*[@id=\"navbarColor01\"]/ul/li[1]/a")).click();
     }
 
     public WebElement getTestDiv(int testNumber) {
