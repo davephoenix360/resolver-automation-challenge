@@ -74,4 +74,15 @@ public class ChallengeTests extends BaseTest {
         assertEquals("Option 3", dropdownBtn.getText(), "Dropdown value should be visible");
 
     }
+
+    @Test
+    void test4_buttons() {
+        WebElement test4Div = homePage.getTestDiv(4);
+        assertTrue(test4Div.isDisplayed(), "Test 4 button should be visible");
+
+        List<WebElement> test4Buttons = test4Div.findElements(By.className("btn"));
+
+        assertTrue(test4Buttons.get(0).isEnabled(), "First button should be enabled");
+        assertFalse(test4Buttons.get(1).isEnabled(), "Second button should be disabled");
+    }
 }
