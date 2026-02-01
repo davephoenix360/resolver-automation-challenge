@@ -92,4 +92,15 @@ public class HomePage {
     public WebElement test5SuccessAlert() {
         return waits.visible(By.cssSelector("div[id='test5-alert']"));
     }
+
+    // Test 3 Getters and ops
+    public WebElement test6GetCell(int row, int col) {
+        WebElement table = getTestDiv(6).findElement(By.tagName("table"));
+        WebElement tableBody = table.findElement(By.tagName("tbody"));
+
+        List<WebElement> rows = tableBody.findElements(By.tagName("tr"));
+        WebElement targetRow = rows.get(row);
+        List<WebElement> cells = targetRow.findElements(By.tagName("td"));
+        return cells.get(col);
+    }
 }

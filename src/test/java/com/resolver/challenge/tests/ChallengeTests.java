@@ -98,4 +98,10 @@ public class ChallengeTests extends BaseTest {
         assertFalse(test5Btn.isEnabled(),  "Test 5 button should be disabled");
 
     }
+
+    @Test
+    void test6_tableValues() {
+        WebElement test6Cell = homePage.test6GetCell(2, 2);
+        assertEquals("Ventosanzap", test6Cell.getText(), "Cell value should be correct");
+    }
 }
